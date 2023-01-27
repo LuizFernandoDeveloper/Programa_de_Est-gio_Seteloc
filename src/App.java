@@ -146,15 +146,10 @@ public class App {
         System.out.println("Aprobabilidade de cair Zero é de: "+ prob + "%");
         System.out.println();
         Float total = (float) 0 , prejuizo = (float)0;
-        System.out.println("antes");
-        for(int i = 0; i > 299; i++){
-            System.out.println("enttrou");
-            System.out.println(bets.get(i).getColor().length());
-
+        for(int i = 0; i < 299; i++){
             switch (bets.get(i).getColor().trim().length()){
                 case 3:
                     total = total +  (bets.get(i).getApostaNoVermelho() * 2);
-                    System.out.println(bets.get(i).getApostaNoVermelho());
                     prejuizo = prejuizo +  bets.get(i).getApostaNoBranco();
                     prejuizo = prejuizo +  bets.get(i).getApostaNoPreto();
                 break;
@@ -171,7 +166,7 @@ public class App {
         }
         System.out.println("Prejuizo dos apostadores esta no valor de: R$"+prejuizo);
         System.out.println("lucro total dos apostadores esta no valor de: R$"+total);
-
+        System.out.println("lucro total - prejuizo dos apostadores = R$"+(total - prejuizo));
 
     }
 }
