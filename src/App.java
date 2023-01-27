@@ -18,9 +18,7 @@ public class App {
             sc = new Scanner(path);
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
-                System.out.println(line);
                 String[] vectLine = line.split(";");
-                System.out.println(vectLine[0]);
                 Integer numero = Integer.parseInt(vectLine[0].toString().trim());
                 String color   = vectLine[1].trim();
                 String minutos = vectLine[2].trim();
@@ -33,7 +31,6 @@ public class App {
                 bets.add(bet);
                 bets.get(position);
                 position++;
-                System.out.println(bets.size());;
             }    
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -44,10 +41,11 @@ public class App {
             }   
         }
 
-        int quantidadePreto = 0 , quantidadeVermelho = 0, quantidadeBranco = 0, maior = 0;
+        float quantidadePreto = 0 , quantidadeVermelho = 0, quantidadeBranco = 0, maior = 0;
         String color = "";
 
         for(int i = 0; i<= bets.size()-1; i++){
+
             if(bets.get(i).getColor().trim().length() == 3){
                 quantidadeVermelho ++;
             }
@@ -72,6 +70,7 @@ public class App {
             maior = quantidadeVermelho;
             color = "Vermelho";
         }
+        System.out.println();
         System.out.println("Quantidad de vermelhos: "+quantidadeVermelho);
         System.out.println("Quantidade de Pretos: "+quantidadePreto);
         System.out.println("Quantidade de Brancos:" +quantidadeBranco);
@@ -118,6 +117,61 @@ public class App {
             numeroString = "Dez";
         }
         System.out.println("O numero com a maior frequência é "+numeroString+" Que foi repetido: "+maior);
+
+        System.out.println();
         
+        float prob = ((quantidadeVermelho/300)*100);
+        System.out.println("Aprobabilidade de cair vermelho é de: "+ Math.round(prob) + "%");
+        prob = ((quantidadePreto/300)*100);
+        System.out.println("Aprobabilidade de cair Preto é de: "+Math.round(prob) + "%");
+        prob = ((quantidadeBranco/300)*100);
+        System.out.println("Aprobabilidade de cair Branco é de: "+ Math.round(prob) + "%");
+        System.out.println();
+        
+        float oito = 0, zero = 0;
+        for(int i = 0; i< 299; i++){
+            switch(bets.get(i).getNumber()){
+                case 8:
+                    oito++;
+                break;
+                case 0:
+                    zero ++;
+                break;
+            }
+        }
+        System.out.println();
+        prob = Math.round((oito/300)*100);
+        System.out.println("Aprobabilidade de cair oito é de: "+ prob + "%");
+        prob = Math.round((zero/300)*100);
+        System.out.println("Aprobabilidade de cair Zero é de: "+ prob + "%");
+        System.out.println();
+        Float total = (float) 0 , prejuizo = (float)0;
+        System.out.println("antes");
+        for(int i = 0; i > 299; i++){
+            System.out.println("enttrou");
+            System.out.println(bets.get(i).getColor().length());
+
+            switch (bets.get(i).getColor().trim().length()){
+                case 3:
+                    total = total +  (bets.get(i).getApostaNoVermelho() * 2);
+                    System.out.println(bets.get(i).getApostaNoVermelho());
+                    prejuizo = prejuizo +  bets.get(i).getApostaNoBranco();
+                    prejuizo = prejuizo +  bets.get(i).getApostaNoPreto();
+                break;
+                case 5:
+                    total = total + (bets.get(i).getApostaNoPreto() * 2);
+                    prejuizo = prejuizo +  bets.get(i).getApostaNoBranco();
+                    prejuizo = prejuizo +  bets.get(i).getApostaNoVermelho();
+                break;
+                case 6: 
+                    total = total + (bets.get(i).getApostaNoBranco() * 14 );
+                    prejuizo = prejuizo +  bets.get(i).getApostaNoVermelho();
+                    prejuizo = prejuizo +  bets.get(i).getApostaNoPreto(); 
+            }
+        }
+        System.out.println("Prejuizo dos apostadores esta no valor de: R$"+prejuizo);
+        System.out.println("lucro total dos apostadores esta no valor de: R$"+total);
+
+
     }
 }

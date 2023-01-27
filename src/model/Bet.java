@@ -47,22 +47,22 @@ public class Bet {
     public void setData(String data) {
         Data = data;
     }
-    public String getApostaNoVermelho() {
+    public Float getApostaNoVermelho() {
         return apostaNoVermelho;
     }
-    public void setApostaNoVermelho(String apostaNoVermelho) {
+    public void setApostaNoVermelho(Float apostaNoVermelho) {
         this.apostaNoVermelho = apostaNoVermelho;
     }
-    public String getApostaNoBranco() {
+    public Float getApostaNoBranco() {
         return apostaNoBranco;
     }
-    public void setApostaNoBranco(String apostaNoBranco) {
+    public void setApostaNoBranco(Float apostaNoBranco) {
         this.apostaNoBranco = apostaNoBranco;
     }
-    public String getApostaNoPreto() {
+    public Float getApostaNoPreto() {
         return apostaNoPreto;
     }
-    public void setApostaNoPreto(String apostaNoPreto) {
+    public void setApostaNoPreto(Float apostaNoPreto) {
         this.apostaNoPreto = apostaNoPreto;
     }
     public String getSeed() {
